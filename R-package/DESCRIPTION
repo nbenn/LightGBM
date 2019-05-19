@@ -40,5 +40,6 @@ Imports:
     jsonlite (>= 1.0),
     magrittr (>= 1.5),
     Matrix (>= 1.1-0),
-    methods
+    methods,
+    bigstatsr
 RoxygenNote: 6.0.1

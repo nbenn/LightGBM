@@ -204,6 +204,17 @@ Dataset <- R6::R6Class(
                              params_str,
                              ref_handle)
 
+        } else if (inherits(private$raw_data, "FBM")) {
+
+          # Are we using a file backed matrix?
+          handle <- lgb.call("LGBM_DatasetCreateFromPtr_R",
+                             ret = handle,
+                             bigstatsr:::getDataPtrFBM(private$raw_data),
+                             nrow(private$raw_data),
+                             ncol(private$raw_data),
+                             params_str,
+                             ref_handle)
+
         } else if (methods::is(private$raw_data, "dgCMatrix")) {
           if (length(private$raw_data@p) > 2147483647) {
             stop("Cannot support large CSC matrix")

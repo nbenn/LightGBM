@@ -79,6 +79,24 @@ LIGHTGBM_C_EXPORT LGBM_SE LGBM_DatasetCreateFromMat_R(LGBM_SE data,
   LGBM_SE call_state);
 
 /*!
+* \brief create dataset from dense file backed matrix
+* \param data ext pointer to double array
+* \param nrow number of rows
+* \param ncol number columns
+* \param parameters additional parameters
+* \param reference used to align bin mapper with other dataset, nullptr means not used
+* \param out created dataset
+* \return 0 when succeed, -1 when failure happens
+*/
+LIGHTGBM_C_EXPORT LGBM_SE LGBM_DatasetCreateFromPtr_R(LGBM_SE data,
+  LGBM_SE nrow,
+  LGBM_SE ncol,
+  LGBM_SE parameters,
+  LGBM_SE reference,
+  LGBM_SE out,
+  LGBM_SE call_state);
+
+/*!
 * \brief Create subset of a data
 * \param handle handle of full dataset
 * \param used_row_indices Indices used in subset

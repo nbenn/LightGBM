@@ -107,6 +107,24 @@ LGBM_SE LGBM_DatasetCreateFromMat_R(LGBM_SE data,
   R_API_END();
 }
 
+LGBM_SE LGBM_DatasetCreateFromPtr_R(LGBM_SE data,
+  LGBM_SE num_row,
+  LGBM_SE num_col,
+  LGBM_SE parameters,
+  LGBM_SE reference,
+  LGBM_SE out,
+  LGBM_SE call_state) {
+  R_API_BEGIN();
+  int32_t nrow = static_cast<int32_t>(R_AS_INT(num_row));
+  int32_t ncol = static_cast<int32_t>(R_AS_INT(num_col));
+  double* p_mat = (double*) EXTPTR_PTR(data);
+  DatasetHandle handle = nullptr;
+  CHECK_CALL(LGBM_DatasetCreateFromMat(p_mat, C_API_DTYPE_FLOAT64, nrow, ncol, COL_MAJOR,
+    R_CHAR_PTR(parameters), R_GET_PTR(reference), &handle));
+  R_SET_PTR(out, handle);
+  R_API_END();
+}
+
 LGBM_SE LGBM_DatasetGetSubset_R(LGBM_SE handle,
   LGBM_SE used_row_indices,
   LGBM_SE len_used_row_indices,

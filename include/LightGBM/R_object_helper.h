@@ -139,6 +139,9 @@ typedef union { VECTOR_SER s; double align; } SEXPREC_ALIGN;
 
 #define R_IS_NULL(x) ((*(LGBM_SE)(x)).sxpinfo.type == 0)
 
+#define EXTPTR_PTR(x) CAR(x)
+#define CAR(e)    ((e)->u.listsxp.carval)
+
 // 64bit pointer
 #if INTPTR_MAX == INT64_MAX
 
